@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Importação da fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
-/*---------------------- NAV BAR ------------------*/
-
+/* Estilo global */
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(255, 255, 255, .75);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background: linear-gradient(to bottom right, #cfc1f0, #b1a3c7); /* Gradiente lilás */
+  font-family: 'Barlow', sans-serif; 
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
 }
 
 .pai {
@@ -20,334 +19,246 @@ body {
   align-items: center;
 }
 
-.container {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-}
-
+/* Estilo da barra de navegação */
 .header {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  font-family:  Arial, Helvetica, sans-serif;
-  border-top: 2px solid #c490ff96;
-  border-bottom: 2px solid #c490ff96;
-}
-
-.header .container {
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.header a {
-  text-decoration: none;
-  color: #8e4ed896;
-}
-
-.header a:hover {
-  text-decoration: none;
-  color: #79b6eed3;
+  width: 100%;
+  background-color: #fff; /* Cor de fundo da barra de navegação */
+  border-bottom: 2px solid #c490ff; /* Cor da borda inferior */
 }
 
 .navbar {
-  width: 600px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-evenly;
   list-style: none;
-  color: #e3b062;
+}
+
+.navbar li {
+  margin-right: 20px; /* Espaçamento entre os itens */
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #af90f7; /* Cor do texto */
+  transition: color 0.3s ease; /* Transição suave da cor */
+}
+
+.navbar li a:hover {
+  color: #34005c; /* Cor do texto ao passar o mouse */
 }
 
 .logo {
-    height: 90PX;
-    width: 130px;
-    
+  height: 100PX;
+  width: 140px;
+  
 }
-/* __________________________ NAV BAR____________________________ */
+/* _____________NAV BAR _________________________ */
 
 
-/* ------------------ BANNER ------------------------------------- */
-/* animação de movimentação do cursor css da frase*/
-
-.frase-impacto, p {
-  border-right: 2px solid #c490ff96;
-  font-family:'Sedan SC'; 
-  font-size: large;
-  text-align: center;
-  font-size: 3em;
-  margin: 0 auto;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 10em;
-  }
-}
-
-.typing-animation {
-  animation: blinkCursor 500ms infinite normal, typing 4s  steps(50) 1s normal both;
-}
-
-@keyframes blinkCursor {
-  from {
-    border-right-color:  #c490ff96;
-  }
-
-  to{
-    border-right-color:transparent;
-  }
-}
-
+/* Estilo do banner de introdução */
 .inicio {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 50px; /* Espaçamento interno aumentado */
+  background: linear-gradient(to bottom right, #e2d5ff, #b29bd8); /* Gradiente linear */
+  border-radius: 30px; /* Borda arredondada */
+  box-shadow: 0 8px 16px rgba(122, 104, 187, 0.705); /* Sombra em caixa */
 }
 
 .child-left {
-  margin-right: 15px; /* Ajuste a margem para distanciar da imagem */
-  width: 40%;
+  margin-right: 30px; /* Espaçamento entre os elementos */
+  max-width: 50%; /* Largura máxima ajustada */
+}
+
+.frase-impacto {
+  font-size: 2.5em; /* Tamanho da fonte aumentado */
+  color: #4c287f; /* Cor do texto alterada */
+  text-align: center;
 }
 
 .div-imagem {
-  margin-left: 20px; /* Ajuste a margem para distanciar do texto */
-  width: 50%;
+  max-width: 50%; /* Largura máxima ajustada */
 }
 
-
-.ImgIncio{
-  width: 600px;
+.ImgIncio {
+  width: 100%; /* Imagem responsiva */
+  border-radius: 20px; /* Borda arredondada */
 }
 
 /* __________________________ BANNER ____________________________ */
 
-/* LOGIN */
+/* -------------------- Sobre o que falo ------------------------- */
 
-.login {
-  height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+/* MISSÃO VISÃO VALORES */
+
+.como {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.login .container {
+.como .container {
+  justify-content: center;
+  margin-left: 100px;
+}
+
+.box img {
+  width: 200px;
+  border-radius: 40px;
+  margin-right: 50px;
+}
+
+.como .container .boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding: 40px 0;
+}
+
+.como p {
+  text-align: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: ROW;
+  align-items: center;
+  justify-content:space-around ;
+}
+
+/* FOOTER */
+
+.footer {
+  background: linear-gradient(to bottom right, #e2d5ff, #b29bd8); /* Gradiente linear */
+  height: 150px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.footer .container {
+  text-align: center;
+}
+
+.footer .container .version {
+  font-size: 12px;
+}
+
+/* ____________________ FOOTER _________________________________ */
+
+/* --------------------------Sobre instrumentos --------------------------------------- */
+.instrumento {
+  display: flex;
+  height: 70%;
+ 
   justify-content: center;
   align-items: center;
-  height: 100%;
+  padding: 50px; /* Espaçamento interno aumentado */
+  background:  rgb(254, 255, 250); /* Gradiente linear */
+  border-radius: 30px; /* Borda arredondada */
+  box-shadow: 0 8px 16px rgb(255, 255, 226); /* Sombra em caixa */
+  background-image: url('../img/unnamed.jpg');
+ 
 }
 
-.card {
-  width: 50%;
-  background-color: #e5e5e5;
+.ImgInstrumento{
+  width: 7000px;
+}
+
+/* ----------------------------- LOGIN -------------------------- */
+.botao:hover {
+  background-color: #dac4c4;
+  color: rgb(80, 37, 97);
+  transition: background 0.5s;
+} 
+
+.englobalogin {
+  width: 30%;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(114, 78, 197, 0.644);
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: palevioletred;
-  flex-direction: column;
-  height: fit-content;
-  padding: 20px 0;
+  padding: 40px;
+  text-align: center;
+  border: #b29bd8 2px solid;
 }
-
-.card h2 {
-  margin: 0;
-  font-size: 30px;
-}
-
-.formulario {
+.pailogin {
   display: flex;
-  height: 90%;
-  width: 80%;
   justify-content: space-around;
-  flex-direction: column;
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-bottom: 20px;
 }
 
-.formulario span {
-  font-size: 15px;
-  font-weight: 800;
+h1 {
+  color: #333;
+  margin-bottom: 12px;
 }
 
-.formulario input {
-  border: 2px solid #32b9cd;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+.input-field {
+  margin-bottom: 30px;
+  position: relative;
+  height: 35px;
+  width: 100%;
 }
 
-.formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
-  color: gray;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  padding: 5px 0;
+.input-field input {
+  width: calc(100% - 30px);
+  padding: 10px;
+  border: 2px solid #ddd;
+  background: transparent;
+  border-radius: 5px;
+  outline: none;
+  color: #333;
+  font-size: 1em;
 }
 
 .botao {
   cursor: pointer;
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  color: #fff;
-  background-color: #e6005a;
-  width: 120px;
-  height: 30px;
-  align-self: center;
-  margin-top: 20px;
-}
-
-.loading-div {
-  width: 50px;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
-#div_erros_login {
-  display: none
-}
-
-/* FORMULARIO */
-
-.alerta_erro{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card_erro {
-  display: none;
-  background-color: #fff;
-  color: black;
-  width: 230px;
-  position: fixed;
-  border-radius: 4px;
-  border: #e6005a 3px solid;
-  padding: 10px;
-  margin-right: 10%;
-}
-
-.card_erro #mensagem_erro{
-  font-weight: 500;
-  font-size: 20px;
-}
-
-.formulario .tipo_campo {
-  font-size: 20px;
-  font-weight: 600 !important;
-}
-
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 10px;
-  border: 2px solid #32b9cd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.btn {
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
+  background: linear-gradient(to bottom right, #e2d5ff, #b29bd8);
   color: white;
-  background-color: #e6005a;
-  width: 120px;
-  align-self: center;
-  margin-top: 5px;
-}
-
-.loading-div {
-  width: 50px;
-  margin: auto;
-  display: none;
-}
-
-.loading-div img {
+  width: 100%;
   height: 50px;
-  width: 50px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  transition: background 0.3s;
 }
 
-/* SIMULADOR */
-
-.simulador {
+.botao:hover {
+  background-color: #442453;
   color: white;
 }
 
-.simulador .container {
+.login a {
+  color: rgb(87, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.fundo {
   flex-direction: column;
-  overflow: scroll; 
-  height: var(--tamanho-simulador);
-}
-
-/* ALERTA */
-
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 40px;
+  width: 300px;
+  height: 300px;
 }
 
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
+.div_mensagem, .plogin {
+  width: 50%;
+  font-size: large;
+  align-items: center;
+  display: flex;
+  justify-content:center ;  
 }
 
-.mensagem-alarme .informacao {
-  width: 66%;
-}
+.div_mensagem {
 
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-  background-size: cover;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+box-shadow: 0 8px 16px rgba(122, 104, 187, 0.705); /* Sombra em caixa */
+padding-bottom: 10px;
 }
