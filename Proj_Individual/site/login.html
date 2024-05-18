@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;400&family=Source+Sans+3:wght@300;400&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="pai">
+    <a href="index.html"> <img src="img/2-removebg-preview.png" alt="" class="logo"></a>
+    <div class="header">
+      <div class="container">
+        <ul class="navbar">
+          <li class="agora">
+            <a href="#como">Sobre mim</a>
+          </li>
+
+          <li style="color: #ffffff;">|</li>
+          <li class="agora">
+            <a href="sobreinstrumentos.html">Sobre Instrumentos</a>
+          </li>
+
+          <li style="color: #ffffff;">|</li>
+          <li class="agora">
+            <a href="#onu">Valores Onu</a>
+          </li>
+
+          <li style="color: #ffffff;">|</li>
+          <li class="agora">
+            <a href="index.html">Sobre o projeto</a>
+          </li>
+
+          <li style="color: #ffffff;">|</li>
+          <li>
+            <a href="login.html">Login</a>
+          </li>
+          <li>
+            <a href="cadastro.html">Cadastro</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pailogin">
+    <div class="englobalogin">
+      <h1>Faça o login</h1>
+
+      <br><br><br>
+
+      <div class="input-field">
+        <input type="text" name="E-mail" id="input_email" placeholder="E-mail">
+      </div>
+
+      <div class="input-field">
+        <input type="password" name="Senha" id="input_senha" placeholder="Senha">
+      </div>
+
+
+      <b>Não tem uma conta?<a style="color:rgba(88, 63, 110, 0.979);" href="cadastro.html">Clique aqui</a></b><br>
+
+      <br>
+
+      <button class="botao" onclick="login()">Fazer Login</button>
+    </div>
+
+    <div class="div_mensagem">
+      <p class="plogin">Para ter acesso a algumas funções diferenciadas do site, faça login com uma conta pré-existente
+        <br>
+        Depois que fizer login você será redirecionado para uma página onde poderá vizualizar um pouco mais sobre a <br>
+        forte influência da aprendizagem de um instrumento...
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <h4>By: Rebeca Roque Cagni &copy; 2024</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+
+  function mostrarsenha() {
+    var temp = document.getElementById("demo_senha")
+
+    if (temp.type === "password") {
+      temp.type = "text"
+    }
+    else {
+      temp.type = "password";
+    }
+  }
+
+  function login() {
+
+    var email = demo_email.value
+    var senha = demo_senha.value
+
+    if (email == 'fernando.brandao@sptech.school' && senha == 'brandao123') {
+      window.location = "dashboard.html"
+    } else {
+      alert('Senha ou email incorretos.')
+    }
+  }
+
+</script>
