@@ -34,3 +34,89 @@
           </div>
         </div>
       </div>
+
+
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="questio">
+          <h1 style="text-align: center;">Questionario</h1>
+          <div class="pergunta">
+            <label for="">Suas ações são baseadas em:</label><br>
+            <select name="" id="select_resposta"> 
+              <option value="1">Suas emoções</option>
+              <option value="2">Suas ideias</option>
+            </select>
+          </div>
+         
+          <div class="pergunta">
+            <label for="">Você se considera uma pessoa:</label><br>
+            <select name="" id="select_resposta1"> 
+              <option value="1">Clássica</option>
+              <option value="2">Moderna</option>
+            </select>
+          </div>
+  
+          <div class="pergunta">
+            <label for="">Qual seu genêro musical favorito:</label><br>
+            <select name="" id="select_resposta2"> 
+              <option value="1">Sertanejo</option>
+              <option value="2">MPB</option>
+              <option value="3">POP</option>
+              <option value="4">Clássica</option>
+            </select>
+          </div>
+  
+          <div class="pergunta">
+            <label for="">Você costuma perder a paciência com facilidade:</label><br>
+            <select name="" id="select_resposta3"> 
+              <option value="1">Sim</option>
+              <option value="2">Não</option>  
+              <option value="3">Ás vezes</option>
+            </select>
+          </div>
+  
+          <div class="pergunta">
+            <label for="">Qual a sua reação quando algo em que se dedicou da errado: </label><br>
+            <select name="" id="select_resposta4"> 
+              <option value="1">Refaço quantas vezes for preciso até dar certo</option>
+              <option value="2">Tento novamente, mas se der errado, desisto</option>
+              <option value="3">Prefiro não insistir em algo que não vale a pena</option>
+              <option value="4">Desisto e fico muito mal</option>
+            </select>
+          </div>
+  
+          <div class="pergunta">
+            <label for="">Qual dessas décadas você mais gosta:</label><br>
+            <select name="" id="select_resposta5"> 
+              <option value="1">Anos 2000</option>
+              <option value="2">Anos 90</option>
+              <option value="3">Anos 80</option>
+              <option value="4">Anos 70</option>
+              <option value="5">Anos 60</option>
+            </select>
+          </div>
+  
+          <div class="pergunta">
+            <label for="">Você costuma demonstrar seus sentimentos:</label><br>
+            <select name="" id="select_resposta6"> 
+              <option value="1">Sim</option>
+              <option value="2">Não</option>
+              <option value="3">Mais ou menos</option>
+            </select>
+          </div> 
+
+          <button style="background-color: rgb(144, 106, 179); width: 15%; padding: 7px; border-radius: 5px; color: white;" onclick="enviar()">Enviar</button>
+        </div>
+      </div> 
+
+      <script>
+        function enviar() {
+          var select1 = select_resposta1.value
+          var select2 = select_resposta2.value
+          var select3 = select_resposta3.value
+          var select4 = select_resposta4.value
+          var select5 = select_resposta5.value
+          var select6 = select_resposta6.value
+        }
+      </script>
+</body>
+</html>
