@@ -1,0 +1,370 @@
+/* Importação da fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+
+/* Estilo global */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Barlow', sans-serif; 
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden ; /*Tira o scroll da horizontal*/
+}
+
+.pai {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo da barra de navegação */
+.header {
+  width: 100%;
+  background-color: #fff; /* Cor de fundo da barra de navegação */
+  border-bottom: 2px solid #c490ff; /* Cor da borda inferior */
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar li {
+  margin-right: 20px; /* Espaçamento entre os itens */
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #af90f7; /* Cor do texto */
+  transition: color 0.3s ease; /* Transição suave da cor */
+}
+
+.navbar li a:hover {
+  color: #34005c; /* Cor do texto ao passar o mouse */
+}
+
+.logo {
+  height: 100PX;
+  width: 140px;
+  
+}
+/* _____________NAV BAR _________________________ */
+
+
+/* Estilo do banner de introdução */
+.inicio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  padding: 50px; /* Espaçamento interno aumentado */
+  background: linear-gradient(to bottom right, #e2d5ff, #b29bd8); /* Gradiente linear */
+}
+
+.child-left {
+  margin-right: 30px; /* Espaçamento entre os elementos */
+  max-width: 50%; /* Largura máxima ajustada */
+}
+
+.frase-impacto {
+  font-size: 2.5em; /* Tamanho da fonte aumentado */
+  color: #4c287f; /* Cor do texto alterada */
+  text-align: center;
+}
+
+.div-imagem {
+  max-width: 50%; /* Largura máxima ajustada */
+}
+
+.ImgIncio {
+  width: 100%; /* Imagem responsiva */
+  border-radius: 20px; /* Borda arredondada */
+}
+
+/* __________________________ BANNER ____________________________ */
+
+/* -------------------- Sobre mim ------------------------- */
+
+
+.como {
+  background-color: #ffffff;
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 30px;
+  padding: 40px 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 5px 5px 8px 6px rgba(122, 104, 187, 0.705); /* Sombra em caixa */
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.como .container {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.box img {
+  width: 200px;
+  border-radius: 20px;
+  margin-right: 30px;
+}
+
+.como .container  {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.como p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+
+.como h4 {
+ text-align: center;
+  font-size: 1.8em;
+  color: #4c287f;
+  margin-bottom: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: ROW;
+  align-items: center;
+  justify-content:space-around ;
+}
+
+
+/* FOOTER */
+
+.footer {
+  background: linear-gradient(to bottom right, #beb5d1, #8a66c4); /* Gradiente linear */
+  height: 150px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.footer .container {
+  text-align: center;
+}
+
+.footer .container .version {
+  font-size: 12px;
+}
+
+/* ____________________ FOOTER _________________________________ */
+
+/* --------------------------Sobre instrumentos --------------------------------------- */
+.instrumento {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px; /* Espaçamento interno aumentado */
+  background:  rgb(254, 255, 250); /* Gradiente linear */
+  border-radius: 30px; /* Borda arredondada */
+  box-shadow: 0 8px 16px rgb(255, 255, 226); /* Sombra em caixa */
+  background-image: url('../img/Instrumentalizando.jpg');
+  background-size: cover;
+  transition: transform 0.3s;
+ 
+}
+
+.img-instrumento{
+  width: 500px;
+}
+
+.INSTRUMENTO-PESQUISA{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  line-height: 1.6;
+}
+
+.box-instrumento {
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+ height: 30%;
+}
+
+.container-instrumento {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.texto {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: large;
+}
+
+/* ----------------------------- LOGIN & CADASTRO-------------------------- */
+.botao:hover {
+  background-color: #dac4c4;
+  color: rgb(80, 37, 97);
+  transition: background 0.5s;
+} 
+
+.englobalogin {
+  width: 30%;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(114, 78, 197, 0.644);
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  border: #b29bd8 2px solid;
+}
+.pailogin {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-bottom: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.input-field {
+  margin-bottom: 30px;
+  position: relative;
+  height: 35px;
+  width: 100%;
+}
+
+.input-field input {
+  width: calc(100% - 30px);
+  padding: 10px;
+  border: 2px solid #ddd;
+  background: transparent;
+  border-radius: 5px;
+  outline: none;
+  color: #333;
+  font-size: 1em;
+}
+
+.botao {
+  cursor: pointer;
+  background: linear-gradient(to bottom right, #e2d5ff, #b29bd8);
+  color: white;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.botao:hover {
+  background-color: #442453;
+  color: white;
+}
+
+.login a {
+  color: rgb(87, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.fundo {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  width: 300px;
+  height: 300px;
+}
+
+.div_mensagem, .plogin {
+  width: 50%;
+  height: 30%;
+  font-size: large;
+  align-items: center;
+  display: flex;
+  justify-content:center ;  
+}
+
+.div_mensagem {
+box-shadow: 0 8px 16px rgba(122, 104, 187, 0.705); /* Sombra em caixa */
+padding-bottom: 10px;
+}
+
+/* -------------------------------- ONU ------------------------------------------- */
+
+.onu {
+  background-color: #ffffff;
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 30px;
+  padding: 40px 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 5px 2px 8px 6px rgba(122, 104, 187, 0.705); /* Sombra em caixa */
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.onu h4 {
+  font-size: 1.8em;
+  color: #4c287f;
+  margin-bottom: 20px;
+}
+
+.onu .container-onu {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.box-onu img {
+  width: 200px;
+  border-radius: 20px;
+  margin-right: 30px;
+}
+
+.onu .container-onu .boxes-onu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.onu p {
+  text-align: justify;
+  line-height: 1.6;
+}
+/* _______________________________________ ONU __________________________________________ */
+
+.alerta_erro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-right: 30px;
+  font-size: larger;
+  color: #4c287f;
+}
