@@ -18,17 +18,21 @@ function buscarAquariosPorEmpresa(req, res) {
 
 
 function cadastrar(req, res) {
-  var pontuacao = req.body.pontuacao;
-  var instrumento = req.body.instrumento
+  var pontuacao = req.body.pontuacaoServer;
+  var instrumento = req.body.instrumentoServer;
+  var id_usuario = req.body.idServer;
+  console.log("cadastrando pontuacao: " + pontuacao + " e instrumento: " + instrumento + "fkuser" + id_usuario)
 
   if (pontuacao == undefined) {
     res.status(400).send("pontuacao está undefined!");
   } else if (instrumento == undefined) {
     res.status(400).send("instrumento está undefined!");
+  } else if (id_usuario == undefined) {
+    res.status(400).send("instrumento está undefined!");
   } else {
 
 
-    aquarioModel.cadastrar(pontuacao, instrumento, id)
+    aquarioModel.cadastrar(id_usuario, pontuacao, instrumento)
       .then((resultado) => {
         res.status(201).json(resultado);
       }

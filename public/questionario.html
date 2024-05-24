@@ -8,7 +8,7 @@
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="css/styleuser.css">
 </head>
-<body>
+<body onload="obterDadosGrafico(), plotarGrafico()">
     <div class="pai">
         <div class="header">
           <div class="container">
@@ -141,10 +141,14 @@
     <div id="div_aguardar" class="loading-div">
     </div>
 
+    <div class="graficos" >
+      <canvas id="myChart"></canvas>
+    </div>
+
       <script>
-        var valido = false
-        var pontuacao = 0
-        var instrumento = ''
+        
+        var pontuacao = 0;
+        var instrumento = '';
 
         function enviar() {
 
@@ -218,6 +222,9 @@
             instrumento = 'piano'
           }
           
+
+          var id_usuario = sessionStorage.ID_USUARIO;
+         
           div_msg_questio.innerHTML = 'O instrumento recomendado para você é: ' + instrumento
 
           cadastrar();
@@ -241,22 +248,30 @@
         // Agora vá para o arquivo routes/usuario.js
         pontuacaoServer: pontuacao,
         instrumentoServer: instrumento,
-      }),
+        idServer: id_usuario,
+
+      }),  
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
+       
 
         if (resposta.ok) {
-         alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+          resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
-          setTimeout(() => {
-            window.location = "indexUser.html";
-          }, "1000");
+
+                    setTimeout(function () {
+                        window.location = "./indexUser.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
 
           limparFormulario();
           finalizarAguardar();
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar o envio!";
         }
       })
       .catch(function (resposta) {
@@ -267,6 +282,113 @@
     return false;
   }
 }
+
+// O gráfico é construído com três funções:
+    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+    function obterDadosGrafico(instrumento) {
+
+fetch("/medidas/buscarUltimasMedidas", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+    })
+}).then(function (resposta) {
+    console.log("ESTOU NO THEN DO entrar()!")
+
+    if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            
+            var respostaBanco = json;
+
+            plotarGrafico(respostaBanco)
+
+        });
+
+    } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+            console.error(texto);
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+})
+
+return false;
+}
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta_banco) {
+
+console.log('iniciando plotagem do gráfico...');
+
+// Criando estrutura para plotar gráfico - labels
+let labels = [];
+
+// Criando estrutura para plotar gráfico - dados
+let dados = {
+    labels: labels,
+    datasets: [{
+        label: 'Umidade',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+    },]
+};
+
+console.log('----------------------------------------------')
+console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+console.log(resposta)
+
+// Inserindo valores recebidos em estrutura para plotar o gráfico
+for (i = 0; i < resposta_banco.length; i++) {
+    var registro = resposta_banco[i];
+    labels.push(registro.momento_grafico);
+    dados.datasets[0].data.push(registro.instrumento);
+}
+
+console.log('----------------------------------------------')
+console.log('O gráfico será plotado com os respectivos valores:')
+console.log('Labels:')
+console.log(labels)
+console.log('Dados:')
+console.log(dados.datasets)
+console.log('----------------------------------------------')
+
+// Criando estrutura para plotar gráfico - config
+const config = {
+    type: 'bar',
+    data: dados,
+};
+
+// Adicionando gráfico criado em div na tela
+let myChart = new Chart(
+    document.getElementById(`myChart`),
+    config
+);
+
+}
+
         
       </script>
 </body>
