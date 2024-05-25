@@ -1,11 +1,11 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasMedidas(req, res) {
+function ultimas(req, res) {
 
 
-    medidaModel.buscarUltimasMedidas().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
+    medidaModel.ultimas().then(function (instrumento) {
+        if (instrumento.length > 0) {
+            res.status(200).json(instrumento);
         } else {
             res.status(204).send("Nenhum resultado encontrado!")
         }
@@ -18,6 +18,6 @@ function buscarUltimasMedidas(req, res) {
 
 
 module.exports = {
-    buscarUltimasMedidas
+    ultimas
 
 }

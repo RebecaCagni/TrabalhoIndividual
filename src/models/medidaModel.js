@@ -1,10 +1,9 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(nomeInstrumento) {
+function ultimas() {
     var instrucaoSql = `
-        SELECT nomeInstrumento, COUNT(*) as quantidade
-        FROM instrumento
-        GROUP BY '${nomeInstrumento}';
+    select NomeInstrumento from questionario 
+
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -12,5 +11,5 @@ function buscarUltimasMedidas(nomeInstrumento) {
 }
 
 module.exports = {
-    buscarUltimasMedidas
+    ultimas
 };
