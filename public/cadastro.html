@@ -106,6 +106,21 @@
 </html>
 
 <script>
+
+function validarEmail(email) {
+  var IndexArroba = email.indexOf('@');
+  var IndexPonto = email.indexOf('.', IndexArroba);
+
+  // Verifica se "@" está presente e não é o primeiro caractere
+  // e se "." está presente após o "@"
+  // Além disso, "." não deve ser o último caractere
+  if (IndexArroba > 0 && IndexPonto > IndexArroba + 1 && IndexPonto < email.length - 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
   function cadastrar() {
     aguardar();
 
@@ -127,9 +142,24 @@
 
       finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+
+    }  if (senhaVar.length < 8) {
+      alert("A senha deve ter no mínimo 8 caracteres.");
+      finalizarAguardar();
+      return false;
+
+    }  if (senhaVar !== confirmacaoSenhaVar) {
+      alert("As senhas não correspondem.");
+      finalizarAguardar();
+      return false;
+
+    } if (!validarEmail(emailVar)) {
+
+    alert("Por favor, insira um e-mail válido.");
+    finalizarAguardar();
+    return false;
     }
+  
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -169,23 +199,23 @@
     return false;
   }
 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+  // function sumirMensagem() {
+  //   cardErro.style.display = "none";
+  // }
 </script>

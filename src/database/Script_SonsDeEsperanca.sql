@@ -11,15 +11,14 @@ senha varchar(50)
 
 
 create table questionario (
-idQuestionario int auto_increment,
+idInstrumento int auto_increment,
 fkUsuario int,
 constraint FKUsuarioQuestionario foreign key (fkUsuario)
 references usuario(id),
-constraint pkComposta primary key (idQuestionario, fkUsuario),
+constraint pkComposta primary key (idInstrumento, fkUsuario),
 pontuacao varchar(10),
 nomeInstrumento varchar(40)
 );
-
  
 create table aula (
 idAula int primary key auto_increment,
@@ -29,18 +28,9 @@ fkUsuario int,
 constraint fk foreign key (fkUsuario)
 references usuario(id)
 );
-
-
-select * from questionario order by nomeInstrumento;
+select * from questionario;
 
 select count(NomeInstrumento) from questionario 
-group by nomeInstrumento order by nomeInstrumento;
-
-SELECT nomeInstrumento 
-        FROM questionario;
+group by nomeInstrumento;
 
 desc instrumento;
-
- SELECT nomeInstrumento, COUNT(*) as quantidade
-        FROM instrumento
-        GROUP BY '${resposta}';
