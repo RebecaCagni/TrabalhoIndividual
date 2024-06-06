@@ -47,7 +47,35 @@ function cadastrar(req, res) {
   }
 }
 
+function cadastraraulas(req, res) {
+  var indice = req.body.indiceServer;
+  var id_usuario = req.body.idServer;
+  console.log("cadastrando indice: " + indice +  "fkuser" + id_usuario)
+
+  if (indice == undefined) {
+    res.status(400).send("pontuacao está undefined!");
+  } else if (id_usuario == undefined) {
+    res.status(400).send("instrumento está undefined!");
+  } else {
+
+
+    aquarioModel.cadastraraulas(id_usuario, indice)
+      .then((resultado) => {
+        res.status(201).json(resultado);
+      }
+      ).catch((erro) => {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o questionário! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
 module.exports = {
   buscarAquariosPorEmpresa,
-  cadastrar
+  cadastrar,
+  cadastraraulas
 }

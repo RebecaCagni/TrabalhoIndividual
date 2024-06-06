@@ -16,8 +16,17 @@ function cadastrar(id_usuario, pontuacao, instrumento) {
   return database.executar(instrucaoSql);
 }
 
+function cadastraraulas(id_usuario, indice) {
+  
+  var instrucaoSql = `INSERT INTO aula (fkUsuario, indice)  VALUES (${id_usuario}, ${indice})`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   buscarAquariosPorEmpresa,
-  cadastrar
+  cadastrar,
+  cadastraraulas
 }

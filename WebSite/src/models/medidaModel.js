@@ -9,7 +9,19 @@ function ultimas() {
     return database.executar(instrucaoSql);
 }
 
+function ultimasaulas() {
+
+    var instrucaoSql = `SELECT COUNT(indice) AS qtd_assistidas 
+FROM aula 
+GROUP BY indice 
+ORDER BY indice;
+`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     ultimas,
- 
+    ultimasaulas
 }

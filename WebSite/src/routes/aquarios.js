@@ -11,4 +11,8 @@
     aquarioController.cadastrar(req, res);
   })
 
+  router.post("/cadastraraulas", function (req, res) {
+    aquarioController.cadastraraulas(req, res);
+  })
+
   module.exports = router;

@@ -6,18 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="./js/sessao.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/styleuser.css">
+  
 </head>
 
-<body>
-  <div class="pai" >
+<body onload="obterDadosGrafico(), plotarGrafico()">
+  <div class="pai">
     <div class="header">
       <div class="container">
         <ul class="navbar">
-           <div>
-            <a href="indexUser.html"> <img class="imguser" src="img/account_avatar_face_man_people_profile_user_icon_123197.svg" alt="" class="logo"></a>
-           </div>
-           <div class="menuhamburguer">
+          <div>
+            <a href="indexUser.html"> <img
+                src="./img/casa.png"></a>
+          </div>
+          <div class="menuhamburguer">
             <li>
               <a href="Questionario.html">Questionário</a>
             </li>
@@ -33,14 +36,14 @@
             <li>
               <a href="index.html" onclick="limparSessao()">SAIR</a>
             </li>
-           </div>  
+          </div>
         </ul>
       </div>
     </div>
   </div>
 
 
-  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 30px;">
+  <div style="display: flex; flex-direction: rom; justify-content: center; align-items: center; padding-top: 30px;">
 
     <div class="div_mensagem" id="div_mensagem">
       <h2>Aulas</h2>
@@ -50,17 +53,29 @@
         prosseguir
         a sua jornada do aprendizado de um instrumento mais facilmente.
       </p>
-      <button onclick="Assistir()"
-        style="display: flex; justify-content: center; align-items: center; background-color: rgb(148, 107, 156); border: none; font-size: large; border-radius: 10px; margin: 10px; padding: 10px; border:2px solid #2c005fdc;">Assistir</button><br>
+      <button id="assistir" onclick="Assistir()"
+        style="display: flex; justify-content: center; align-items: center; background-color: rgb(148, 107, 156); border: none; font-size: large; border-radius: 10px; margin: 10px; padding: 10px; border:2px solid #2c005fdc;">Assistir</button>
+        <button onclick="cadastrar()"
+        style="display: flex; justify-content: center; align-items: center; background-color: rgb(148, 107, 156); border: none; font-size: large; border-radius: 10px; margin: 10px; padding: 10px; border:2px solid #2c005fdc;">Finalizar assistir</button><br>
       Pesquise por uma aula <input placeholder="1, 2, 3 ou 4" type="text" id="input_pesquisa"> <br>
       <button onclick="pesquisar()"
         style="display: flex; justify-content: center; align-items: center; background-color: rgb(148, 107, 156); border: none; font-size: large; border-radius: 10px; margin: 10px; padding: 10px; border:2px solid #2c005fdc;">Pesquisar</button><br>
     </div>
+    <center>
+      <div class="graficos2">
+        <span>Gráfico da quantidade de usuários e as respectivas aulas que assistiram</span><br>
+        <canvas id="myChart"></canvas>
+      </div>
+    </center>
   </div>
+
+
+
 
   <script>
     var lista_aulas = ['https://youtu.be/GJC9zdMG1UQ', 'https://youtu.be/EWb1ZoOjY6E', 'https://youtu.be/2syOacyi3Kk', 'https://youtu.be/OD531evnWb8'];
     var indice = 0
+    var id_usuario = sessionStorage.ID_USUARIO;
 
     function Assistir() {
 
@@ -83,8 +98,10 @@
         Mensagem.innerHTML = `
                     Você assistiu todas as aulas!<br>
                     assistiu: ${porcentagem}%`
-      }
 
+        assistir.style.display = "none";
+      }
+      
     }
 
     function pesquisar() {
@@ -96,10 +113,170 @@
       if (indice_aula < 0 || indice_aula > lista_aulas.length) {
         Mensagem.innerHTML = `Não existe essa aula`
       } else {
-        Mensagem.innerHTML = `Assista a aula ${indice_aula + 1}<br>
-        <a href="${lista_aulas[indice_aula - 1]} ">${lista_aulas[indice_aula - 1] } </a>`
+        Mensagem.innerHTML = `Assista a aula ${indice_aula}<br>
+        <a href="${lista_aulas[indice_aula - 1]} ">${lista_aulas[indice_aula - 1]} </a>`
       }
     }
+
+    function cadastrar() {
+   
+
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+
+      // Enviando o valor da nova input
+      fetch("/aquarios/cadastraraulas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          indiceServer: indice,
+          idServer: id_usuario,
+
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+
+          if (resposta.ok) {
+            resposta.json().then(json => {
+              console.log(json);
+              console.log(JSON.stringify(json));
+
+
+              setTimeout(function () {
+                window.location = "aulas.html";
+              }, 1000); // apenas para exibir o loading
+
+            });
+
+            limparFormulario();
+          } else {
+            throw "Houve um erro ao tentar realizar o envio!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+
+      return false;
+    }
+
+
+    // O gráfico é construído com três funções:
+    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+    function obterDadosGrafico() {
+
+      fetch("/medidas/ultimasaulas", {
+        method: "GET",
+      }).then(function (indice) {
+        console.log("ESTOU NO THEN DO obterdados()!")
+        console.log(indice)
+        if (indice.ok) {
+          console.log(indice);
+
+          indice.json().then(json => {
+
+
+            var indice = json;
+            console.log(json)
+
+            plotarGrafico(indice)
+
+          });
+
+        } else {
+
+          console.log("Houve um erro ao tentar realizar o obterDadosGrafico!");
+
+          indice.text().then(texto => {
+            console.error(texto);
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+      return false;
+    }
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
+    var lista_indices = []
+    function plotarGrafico(indice) {
+
+      console.log('iniciando plotagem do gráfico...');
+
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+      console.log(lista_indices)
+
+    
+      console.log(indice)
+      for (let index = 0; index < indice.length; index++) {
+        var registro = indice[index].qtd_assistidas
+        lista_indices.push(registro)
+      }
+      
+
+      const ctx = document.getElementById('myChart');
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Assistiu 1 aula', 'Assistiu 2 aulas', 'Assistiu 3 aulas', 'Assistiu todas aulas'],
+          datasets: [{
+            label: 'Usuários',
+            data: lista_indices,
+            borderWidth: 1,
+            borderColor: '#FF6384',
+            backgroundColor: '#FFB1C1',
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        },
+
+        options: {
+          plugins: {
+            legend: {
+              labels: {
+                // This more specific font property overrides the global property
+                font: {
+                  size: 14
+                }
+              }
+            }
+          }
+        }
+      });
+
+      console.log('----------------------------------------------')
+      console.log('O gráfico será plotado com os respectivos valores:')
+      console.log('Aulas:')
+      console.log(indice)
+    }       
+  </script>
 
   </script>
 </body>
