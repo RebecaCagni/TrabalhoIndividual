@@ -9,25 +9,35 @@ email varchar(50),
 senha varchar(50)
 );
 
+
 create table questionario (
-idQuestionario int auto_increment,
+idInstrumento int auto_increment,
 fkUsuario int,
 constraint FKUsuarioQuestionario foreign key (fkUsuario)
 references usuario(id),
-constraint pkComposta primary key (idQuestionario, fkUsuario),
+constraint pkComposta primary key (idInstrumento, fkUsuario),
 pontuacao varchar(10),
 nomeInstrumento varchar(40)
 );
-
  
-create table aula (
-idAula int primary key auto_increment,
-descricao varchar (70),
-url varchar(45),
+create table visualizacao (
+idVizualizar int primary key auto_increment,
 fkUsuario int,
+indice int,
 constraint fk foreign key (fkUsuario)
 references usuario(id)
 );
+
+
+select * from aula;
+
+select  count(indice) as qtd_assistidas from aula
+group by indice order by indice;
+
+SELECT COUNT(indice) AS qtd_assistidas 
+FROM aula 
+GROUP BY indice 
+ORDER BY indice;
 
 CREATE TABLE aviso (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,17 +47,13 @@ CREATE TABLE aviso (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
+select * from aula;
 
-select * from questionario order by nomeInstrumento;
+select * from aviso;
 
-select count(nomeInstrumento) as quantidade from questionario 
-group by nomeInstrumento order by nomeInstrumento;
-
-SELECT nomeInstrumento 
-        FROM questionario;
+select count(NomeInstrumento) from questionario 
+group by nomeInstrumento;
 
 desc instrumento;
 
- SELECT nomeInstrumento, COUNT(*) as quantidade
-        FROM instrumento
-        GROUP BY '${resposta}';
+

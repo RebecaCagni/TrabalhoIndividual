@@ -12,7 +12,7 @@ function ultimas() {
 function ultimasaulas() {
 
     var instrucaoSql = `SELECT COUNT(indice) AS qtd_assistidas 
-FROM aula 
+FROM visualizacao 
 GROUP BY indice 
 ORDER BY indice;
 `;

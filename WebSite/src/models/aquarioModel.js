@@ -18,7 +18,7 @@ function cadastrar(id_usuario, pontuacao, instrumento) {
 
 function cadastraraulas(id_usuario, indice) {
   
-  var instrucaoSql = `INSERT INTO aula (fkUsuario, indice)  VALUES (${id_usuario}, ${indice})`;
+  var instrucaoSql = `INSERT INTO visualizacao (fkUsuario, indice)  VALUES (${id_usuario}, ${indice})`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
